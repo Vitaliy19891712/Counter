@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import Button from "../Components/Button";
 import Input from "../Components/Input";
 import s from "./TwoPage.module.css";
-
+// 
 
 type TwoPagePropsType = {
   startValue: number;
