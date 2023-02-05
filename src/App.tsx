@@ -1,24 +1,62 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ChangeEvent, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import OnePage from "./OnePage/OnePage";
+
+import TwoPage from "./TwoPage/TwoPage";
 
 function App() {
+  const [maxValue, setMaxValue] = useState(5);
+  const [startValue, setStartValue] = useState(0);
+  const [currentValue, setCurrentValue] = useState(0);
+
+  const incButtonHandler = () => setCurrentValue(currentValue + 1);
+
+  const resetButtonHandler = () => setCurrentValue(startValue);
+
+  const inputMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) =>
+    setMaxValue(Number(e.currentTarget.value));
+
+  const inputStartValueHandler = (e: ChangeEvent<HTMLInputElement>) =>
+    setStartValue(Number(e.currentTarget.value));
+
+  const setButtonHandler = () => setCurrentValue(startValue);
+
+  let disabledInkClass = currentValue === maxValue;
+
+  let disabledResetClass = currentValue === startValue;
+
+  let disabledSetClass = maxValue <= startValue || startValue < 0;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route
+          path={"/onepage"}
+          element={
+            <OnePage
+              incButtonHandler={incButtonHandler}
+              resetButtonHandler={resetButtonHandler}
+              currentValue={currentValue}
+              disabledInkClass={disabledInkClass}
+              disabledResetClass={disabledResetClass}
+            />
+          }
+        />
+        <Route
+          path={"/"}
+          element={
+            <TwoPage
+              inputMaxValueHandler={inputMaxValueHandler}
+              inputStartValueHandler={inputStartValueHandler}
+              startValue={startValue}
+              maxValue={maxValue}
+              currentValue={currentValue}
+              setButtonHandler={setButtonHandler}
+              disabledSetClass={disabledSetClass}
+            />
+          }
+        />
+      </Routes>
     </div>
   );
 }
