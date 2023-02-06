@@ -7,6 +7,7 @@ type OnePagePropsType = {
   incButtonHandler: () => void;
   resetButtonHandler: () => void;
   currentValue: number;
+  maxValue: number;
   disabledInkClass: boolean;
   disabledResetClass: boolean;
 };
@@ -17,10 +18,15 @@ const OnePage: React.FC<OnePagePropsType> = ({
   currentValue,
   disabledInkClass,
   disabledResetClass,
+  maxValue,
 }) => {
+  let classNameText =
+    maxValue === currentValue ? s.text + " " + s.textMax : s.text;
   return (
     <div className={s.wrapper}>
-      <div className={s.text}><span>{currentValue}</span></div>
+      <div className={classNameText}>
+        <span>{currentValue}</span>
+      </div>
       <div className={s.buttons}>
         <Button
           name={"inc"}

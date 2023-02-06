@@ -14,11 +14,13 @@
   text-align: center;
   padding: 15px 0;
 }
+
 .text {
   color: rgb(67, 182, 182);
   font-size: 1.2rem;
   font-weight: bold;
 }
+
 .minWrapper {
   border: 2px solid rgb(1, 255, 242);
   border-radius: 0.25rem;

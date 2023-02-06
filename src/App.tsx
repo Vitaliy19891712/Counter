@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import OnePage from "./OnePage/OnePage";
 
@@ -8,6 +8,23 @@ function App() {
   const [maxValue, setMaxValue] = useState(5);
   const [startValue, setStartValue] = useState(0);
   const [currentValue, setCurrentValue] = useState(0);
+
+  useEffect(() => {
+    let maxValueStr = localStorage.getItem("maxValue");
+    let startValueStr = localStorage.getItem("startValue");
+    let currentValueStr = localStorage.getItem("currentValue");
+    if (maxValueStr && startValueStr && currentValueStr) {
+      setMaxValue(JSON.parse(maxValueStr));
+      setStartValue(JSON.parse(startValueStr));
+      setCurrentValue(JSON.parse(currentValueStr));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("startValue", JSON.stringify(startValue));
+    localStorage.setItem("maxValue", JSON.stringify(maxValue));
+    localStorage.setItem("currentValue", JSON.stringify(currentValue));
+  }, [currentValue, maxValue, startValue]);
 
   const incButtonHandler = () => setCurrentValue(currentValue + 1);
 
@@ -34,6 +51,7 @@ function App() {
           path={"/onepage"}
           element={
             <OnePage
+              maxValue={maxValue}
               incButtonHandler={incButtonHandler}
               resetButtonHandler={resetButtonHandler}
               currentValue={currentValue}
