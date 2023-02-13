@@ -48,7 +48,7 @@ function App() {
     <div>
       <Routes>
         <Route
-          path={"/onepage"}
+          path={"/Counter/onepage"}
           element={
             <OnePage
               maxValue={maxValue}
@@ -60,8 +60,9 @@ function App() {
             />
           }
         />
+
         <Route
-          path={"/"}
+          path={"/Counter/"}
           element={
             <TwoPage
               inputMaxValueHandler={inputMaxValueHandler}

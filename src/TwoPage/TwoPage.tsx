@@ -35,6 +35,7 @@ const TwoPage: React.FC<TwoPagePropsType> = ({
             value={maxValue}
           />
         </div>
+
         <div className={s.flexRow}>
           <div className={s.text}>start value:</div>
           <Input
@@ -45,8 +46,9 @@ const TwoPage: React.FC<TwoPagePropsType> = ({
           />
         </div>
       </div>
+
       <div className={s.button + " " + s.minWrapper}>
-        <NavLink to={"/onepage"}>
+        <NavLink to={"/Counter/onepage"}>
           <Button
             name={"set"}
             onClickButtonHandler={setButtonHandler}

@@ -22,23 +22,27 @@ const OnePage: React.FC<OnePagePropsType> = ({
 }) => {
   let classNameText =
     maxValue === currentValue ? s.text + " " + s.textMax : s.text;
+
   return (
     <div className={s.wrapper}>
       <div className={classNameText}>
         <span>{currentValue}</span>
       </div>
+
       <div className={s.buttons}>
         <Button
           name={"inc"}
           onClickButtonHandler={incButtonHandler}
           disabled={disabledInkClass}
         />
+
         <Button
           name={"reset"}
           onClickButtonHandler={resetButtonHandler}
           disabled={disabledResetClass}
         />
-        <NavLink to={"/"}>
+
+        <NavLink to={"/Counter/"}>
           <Button
             name={"set"}
             onClickButtonHandler={() => {}}
